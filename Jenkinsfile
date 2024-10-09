@@ -21,7 +21,7 @@ pipeline {
                 sh 'python3 test.py'  // Ensure the test.py script is executable
             }
         }
-        stage('Deploy') {
+        stage('Deploys') {
             steps {
                 // This stage can contain your deployment steps (if any)
                 echo 'Deploying the project...'
