@@ -1,28 +1,37 @@
 pipeline {
-    agent any  // This runs the pipeline on any available agent
-
+    agent any
     stages {
-        stage('Preparation') {
+        stage('Checkout') {
             steps {
-                // Checkout the code from your repository
-                git url: 'https://github.com/your-repo/sample-python.git', branch: 'main'
+                // Cloning the specified GitHub repository
+                git branch: 'main', url: 'https://github.com/mohasinSH/jenkins-testing.git'
             }
         }
-
-        stage('Run Python Script') {
+        stage('Build') {
             steps {
-                // Ensure Python is installed and run the script
-                sh 'python3 test.py'  // Use 'python' if Python 3 is the default
+                // This stage can contain your build steps (if any)
+                echo 'Building the project...'
+                // You can replace this with actual build commands if needed
+            }
+        }
+        stage('Test') {
+            steps {
+                // Running the Python test script
+                echo 'Running tests...'
+                sh 'python3 test.py'  // Ensure the test.py script is executable
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // This stage can contain your deployment steps (if any)
+                echo 'Deploying the project...'
+                // You can replace this with actual deployment commands if needed
             }
         }
     }
-
     post {
-        success {
-            echo 'The Python script ran successfully!'
-        }
-        failure {
-            echo 'The Python script failed!'
+        always {
+            echo 'Pipeline completed.'
         }
     }
 }
