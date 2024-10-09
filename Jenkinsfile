@@ -30,6 +30,30 @@ pipeline {
         }
     }
     post {
+        success {
+            echo 'Pipeline succeeded!'
+            emailext (
+                to: 'ismail4111969@gmail.com',
+                subject: "Successful Build: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """<p>Build successful!</p>
+                          <p>Job Name: ${env.JOB_NAME}</p>
+                          <p>Build Number: ${env.BUILD_NUMBER}</p>
+                          <p>View Build: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>""",
+                mimeType: 'text/html'
+            )
+        }
+        failure {
+            echo 'Pipeline failed!'
+            emailext (
+                to: 'ismail4111969@gmail.com',
+                subject: "Failed Build: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """<p>Build failed!</p>
+                          <p>Job Name: ${env.JOB_NAME}</p>
+                          <p>Build Number: ${env.BUILD_NUMBER}</p>
+                          <p>View Build: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>""",
+                mimeType: 'text/html'
+            )
+        }
         always {
             echo 'Pipeline completed.'
         }
