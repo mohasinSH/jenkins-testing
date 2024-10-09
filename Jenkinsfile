@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout') {
+        stage('CheckOut') {
             steps {
                 // Cloning the specified GitHub repository
                 git branch: 'main', url: 'https://github.com/mohasinSH/jenkins-testing.git'
