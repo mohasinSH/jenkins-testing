@@ -1,1 +1,1 @@
-printf("this is a code in testing, V2")
+print("this is a code in testing, V2")
