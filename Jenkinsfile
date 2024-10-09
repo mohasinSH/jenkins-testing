@@ -7,7 +7,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/mohasinSH/jenkins-testing.git'
             }
         }
-        stage('Build') {
+        stage('Builds') {
             steps {
                 // This stage can contain your build steps (if any)
                 echo 'Building the project...'
